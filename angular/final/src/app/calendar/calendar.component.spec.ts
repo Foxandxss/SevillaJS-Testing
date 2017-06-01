@@ -27,8 +27,9 @@ describe('CalendarComponent', () => {
     fixture.detectChanges();
   });
 
-  it('has an input for the date', () => {
+  it('has an input for the date and startsOnMonday', () => {
     expect(component.date).toBe('2017/5');
+    expect(component.startsOnMonday).toBe(false);
   });
 
   it('contains the formatted date on a header', () => {

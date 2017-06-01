@@ -8,17 +8,17 @@ export class Day {
 @Injectable()
 export class CalendarService {
 
-  getMonth(year: number, month: number, startOnMonday = false): Day[] {
+  getMonth(year: number, month: number, startsOnMonday = false): Day[] {
     const days: Day[] = [];
     const date = new Date(year, month, 1);
-    const startingDay = startOnMonday ? 1 : 0;
+    const startingDay = startsOnMonday ? 1 : 0;
     const difference = startingDay - date.getDay();
     const numberOfLastDays = this.getNumberOfLastDays(difference);
 
     date.setDate(numberOfLastDays);
     for (let i = 0; i < 42; i++) {
-      const loopMonth = date.getMonth();
-      days[i] = { day: date.getDate(), outsideMonth: loopMonth !== month }
+      const currentMonth = date.getMonth();
+      days[i] = { day: date.getDate(), outsideMonth: currentMonth !== month };
       date.setDate(date.getDate() + 1);
     }
 

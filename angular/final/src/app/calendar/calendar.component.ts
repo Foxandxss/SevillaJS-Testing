@@ -26,7 +26,6 @@ export class CalendarComponent implements AfterContentChecked {
     ['M', 'T', 'W', 'T', 'F', 'S', 'S']
   ];
 
-  // weekDays = this.weekDaysList[0];
   weekDays = [];
 
   constructor(private service: CalendarService) { }

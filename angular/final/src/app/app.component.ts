@@ -10,8 +10,8 @@ export class AppComponent {
   monday = true;
 
   next() {
-    let dateParts = this.date.split('/');
-    let date = new Date(+dateParts[0], +dateParts[1]);
+    const dateParts = this.date.split('/');
+    const date = new Date(+dateParts[0], +dateParts[1]);
     date.setMonth(date.getMonth() + 1);
     this.date = `${date.getFullYear()}/${date.getMonth()}`;
   }

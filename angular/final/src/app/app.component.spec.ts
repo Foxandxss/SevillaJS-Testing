@@ -27,7 +27,7 @@ describe('AppComponent', () => {
   });
 
   it('contains the calendar', () => {
-    expect(calendar).toBeTruthy();
+    expect(calendarEl).toBeTruthy();
   });
 
   it('has a date and startsOnMonday for the parameters', () => {
@@ -42,8 +42,7 @@ describe('AppComponent', () => {
 
   it('has a next method to show the next month', () => {
     component.next();
-    fixture.detectChanges();
-    expect(calendar.date).toBe('2017/6');
+    expect(component.date).toBe('2017/6');
   });
 
   it('has a button that calls the next method', () => {

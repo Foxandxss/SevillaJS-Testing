@@ -115,7 +115,7 @@ describe('CalendarService', () => {
     });
   });
 
-  it('it should mark the days outside the month', () => {
+  it('should mark the days outside the month', () => {
     const days: Day[] = service.getMonth(2017, 5, true);
     const day29 = days[0];
     const day1Jan = days[3];
