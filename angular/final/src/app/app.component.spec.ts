@@ -1,32 +1,55 @@
-import { TestBed, async } from '@angular/core/testing';
+import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { CalendarComponentStub } from '../testing/mocks';
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
+  let fixture: ComponentFixture<AppComponent>;
+  let component: AppComponent;
+  let calendarEl: DebugElement;
+  let calendar: CalendarComponentStub;
+
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
-  }));
+        AppComponent, CalendarComponentStub
+      ]
+    });
 
-  it('should create the app', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  }));
-
-  it(`should have as title 'sjs works!'`, async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('sjs works!');
-  }));
-
-  it('should render title in a h1 tag', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('sjs works!');
-  }));
+
+    calendarEl = fixture.debugElement.query(By.css('sjs-calendar'));
+    calendar = calendarEl.injector.get(CalendarComponentStub);
+  });
+
+  it('contains the calendar', () => {
+    expect(calendar).toBeTruthy();
+  });
+
+  it('has a date and startsOnMonday for the parameters', () => {
+    expect(component.date).toBe('2017/5');
+    expect(component.monday).toBe(true);
+  });
+
+  it('uses the attributes on the template', () => {
+    expect(calendar.date).toBe('2017/5');
+    expect(calendar.startsOnMonday).toBe(true);
+  });
+
+  it('has a next method to show the next month', () => {
+    component.next();
+    fixture.detectChanges();
+    expect(calendar.date).toBe('2017/6');
+  });
+
+  it('has a button that calls the next method', () => {
+    spyOn(component, 'next');
+    const buttonEl = fixture.debugElement.query(By.css('button')).nativeElement;
+    buttonEl.click();
+    expect(component.next).toHaveBeenCalled();
+  });
 });
