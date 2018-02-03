@@ -74,10 +74,10 @@ describe('CalendarComponent', () => {
 
     const weekDays = fixture.debugElement.queryAll(By.css('.a-week-day'));
     expect(weekDays.length).toBe(7);
-    const sunday = weekDays[0].children[0].nativeElement;
-    expect(sunday.textContent).toBe('M');
-    const saturday = weekDays[6].children[0].nativeElement;
-    expect(saturday.textContent).toBe('S');
+    const monday = weekDays[0].children[0].nativeElement;
+    expect(monday.textContent).toBe('M');
+    const sunday = weekDays[6].children[0].nativeElement;
+    expect(sunday.textContent).toBe('S');
   });
 
   it('should have the proper calendar when it starts on monday', () => {
